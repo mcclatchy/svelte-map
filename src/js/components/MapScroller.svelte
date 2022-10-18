@@ -35,8 +35,6 @@
   let sections;
   let hovered;
 
-  console.log(hovered)
-
   // Using svelte-inview functionality to lazy load the map
   // offset - defines how many pixels ahead of time to start loading the map
   let isInView;
