@@ -9,7 +9,7 @@ Run the following commands:
 
 ``` bash
 # Install dependencies (only the first time)
-npm install
+npm install --dev
 
 # Run the local server at localhost:8080
 npm run dev
@@ -92,7 +92,7 @@ This is the format of an example output JSON
 ```
 
 ## Data
-
+As is, the repository is set up to handle `topojson` files - you can convert most geo files into `topojson` with [Mapshaper](https://mapshaper.org/). The data files live in the `src/data` folder. If you add images, you can place them in the `src/images` folder - this framework should support the same image types that maplibre-gl supports.
 
 ## Map Config
 The config file aims to centralize as much customization of a scrollable map into one file as possible. In this repository, that config file is found at `src/js/components/MapExample.svelte`. There are several customizable elements that can contribute to the map experience:
@@ -209,6 +209,10 @@ const mapLayerOrder = [
 #### mapSources
 This is an array of Objects that does the majority of the work for the data that will appear on your map. It's similar to a maplibre-gl or mapbox-gl style JSON, and still makes use of the same `paint` and `layout` fields, with more support for switching styles with different sections. There are also other fields in the `source` and `layer` levels that define the data file URL, that can add color fields dynamically, or add image coordinates.
 
+Each source entry in the array is an Object that minimally has fields for a `filepath` string (the data URL), a `sourceId` string (any id you want), a `dataType` string (topojson, image, raster) and a `layers` array. It can optionally have a `promoteId` (used for hovering/selecting/tooltips - indicates the id field in the topojson being used), a `colorData` Object (which can dynamically apply colors to layers using categorical, continuous or discrete color scales), a `coordinates` array (used for image layers), a `tileSize` field (used for raster tiles).
+
+Each `layer` in the layer array is an object that minimally should have a `mapLayerId` (any id you want), a `layerType` (symbol, circle, image, raster, fill, line, etc.) and a `paint` object. It can also have a `layerId` (when you use a topojson this is necessary), or a `tooltip` Object if you want hoverability (`tooltip: { hover: true, select: true }` - in this scenario the source layer must have a `promoteId` which is the property field in the topojson that indicates what object is being hovered over).
+
 For the `paint` and `layout` objects, you can define a `default` style as nested object.
 ```
 paint: {
@@ -229,13 +233,15 @@ paint: {
 }
 ```
 
-*raster tiles*
+#### Examples: mapSource & mapLayer 
+
+*raster tiles* 
 
 `dataType: "raster"`
 
 `layerType: "raster"`
 
-```
+```javascript
 {		
   filepath: 'https://cartodb-basemaps-b.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png',
   sourceId: "basetiles",
@@ -257,3 +263,92 @@ paint: {
 }
 ```
 
+*image* 
+
+`dataType: "image"`
+
+`layerType: "raster"`
+
+``` javascript
+{		
+  filepath: `${imagePath}/neighborhood.png`,
+  sourceId: "neighborhood",
+  dataType: "image",
+  coordinates: 	[
+    [-80.88558352499712, 35.297005839984934],
+    [-80.87288535195562, 35.297005839984934],
+    [-80.87288535195562, 35.29099449007646],
+    [-80.88558352499712, 35.29099449007646]
+  ],
+  layers: [
+    {
+      mapLayerId: "neighborhood-image",
+      layerType: "raster",
+      paint: {
+        default: {
+          "raster-opacity": 0,
+          "raster-opacity-transition": {"duration": 300,"delay": 0}
+        },
+        four: {
+          "raster-opacity": 1
+        },
+        five: {
+          "raster-opacity": 1
+        }
+      }
+    }
+  ]
+},
+```
+
+*topojson*
+
+`dataType: "topojson"`
+
+`layerType: "fill"` OR `layerType: "line"` OR `layerType: "circle"` etc.
+
+``` javascript
+{		
+  filepath: `${dataPath}/homes.json`,
+  sourceId: "homes",
+  dataType: "topojson",
+  promoteId: "investor",
+  colorData: {
+    homes: {
+      colorField: "investor",
+      colorDict: investorColors,
+      defaultColor: "#d5cc80"
+    }
+  },
+  layers: [
+    {
+      mapLayerId: "home-fill",
+      layerId: "homes",
+      layerType: "fill",
+      paint: {
+        default: {
+          'fill-color': ["interpolate",["linear"],["zoom"],3,"rgba(125,125,125,0)",13,"rgb(150,150,150)",14,['get', 'color'],15,['get', 'color']],
+          'fill-opacity': ["interpolate",["linear"],["zoom"],3,0,13,0,14,1,15,1],
+          "fill-opacity-transition": {"duration": 300,"delay": 0},
+        }
+      },
+      tooltip: {
+        hover: true,
+        select: true
+      }
+    },
+    {
+      mapLayerId: "home-line",
+      layerId: "homes",
+      layerType: "line",
+      paint: {
+        default: {
+          'line-color': ["interpolate",["linear"],["zoom"],3,"rgba(125,125,125,0)",13,"rgb(150,150,150)",14,['get', 'color'],15,['get', 'color']],
+          'line-opacity': ["interpolate",["linear"],["zoom"],3,0,13,0,14,0.7,15,1],
+          "line-opacity-transition": {"duration": 300,"delay": 0}
+        }
+      }
+    }
+  ]
+}
+```
