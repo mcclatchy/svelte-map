@@ -36,7 +36,7 @@ This is an example of an AML format for a scrollable map with 2 sections. You mi
     pitch: 0
     bearing: 0
     speed: 1
-    hoverable: false
+    hoverable: true
     
     id: two
     text: Their portfolios are especially concentrated in the Charlotte metro area.
@@ -79,7 +79,7 @@ This is the format of an example output JSON
                 "speed": "1",
                 
                 // whether this section should allow hovering (default is false)
-                "hoverable": "false"
+                "hoverable": "true"
             },
             {
                 "id": "two",
