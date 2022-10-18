@@ -56,15 +56,14 @@
     return {
       text: section.text,
       id: section?.id,
-      interactive: section?.interactive,
+      hoverable: section?.hoverable,
       boundsId: section?.bounds,
       bounds: mapBounds[section.bounds],
       horizontalPosition: section.horizontalPosition,
       speed: section?.speed,
       pitch: section?.pitch || 0,
       bearing: section?.bearing || 0,
-      padding: {top: 100, bottom:0, left: 0, right: 0},
-      pointerEvents: section?.interactive ? "all" : "none"
+      padding: {top: 100, bottom:0, left: 0, right: 0}
     }
   });
 
@@ -88,7 +87,7 @@
     mapDataLoaded = true;
   }
 
-  $: isInteractiveSection = sections.filter(section => section.id === $activeSectionId)[0].interactive
+  $: isHoverableSection = sections.filter(section => section.id === $activeSectionId)[0].hoverable
 </script>
 
 <!-- WARNING: this is only for debugging - don't deploy this actively -->
@@ -124,14 +123,11 @@
       style={`
         width: 100%;
         height: ${isTablet.ipad() ? $windowHeight - 50 : $windowHeight}px;
-        pointer-events: ${isInteractiveSection ? 'all' : 'none'}`
+        pointer-events: ${isHoverableSection ? 'all' : 'none'}`
       }>
       <div class="map" use:inview={options} on:change={handleChange}>
         {#if mapDataLoaded && (isInView || shouldLoad)}
-          <!-- Load the Map component w/ correct bounds and attribution
-          If you want the map to be interactive, it can be defined here.
-          You could also change logic to be interactive on some sections,
-          no interaction on others (also change pointer-events above). -->
+          <!-- Load the Map component w/ correct bounds and attribution -->
           <Map
             id={mapId}
             style={mapStyleUrl}
