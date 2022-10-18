@@ -982,12 +982,13 @@
 <MapScroller
 	{scrollY}
 	{mapId}
-	{mapStyleUrl}
 	{mapSectionData}
+
+	{mapStyleUrl}
 	{mapIcons}
 	{mapBounds}
-	{mapSources}
 	{mapAttribution}
 	{mapLegends}
 	{mapLayerOrder}
+	{mapSources}
 />
