@@ -36,7 +36,6 @@
     "d3-color": "^3.1.0",
     "d3-geo": "^3.0.1",
     "maplibre-gl": "^2.4.0",
-    "maplibre-preload": "*",
     "svelte-inview": "^2.1.1",
     "svelte-viewport-info": "^1.0.0",
     "underscore": "^1.13.1",
