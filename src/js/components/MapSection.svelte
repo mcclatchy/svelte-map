@@ -17,6 +17,7 @@
 	const pitch = section?.pitch || 0
 	const bearing = section?.bearing || 0
 	const speed = section?.speed || 0.6;
+	const horizontalPosition = section?.horizontalPosition || 'center';
 
 	let boxWidth = 600;
 
@@ -52,7 +53,7 @@
 {#if fixed}
 	<section
 		class:no-opacity={section.text === "" || section.text === "<span></span>"}
-		class={section.horizontalPosition}
+		class={horizontalPosition}
 		id={section.id}
 		use:inview={options}
 		on:change={handleChange}
@@ -81,7 +82,7 @@
 {:else}
 	<section
 		class:no-opacity={section.text === ""  || section.text === "<span></span>"}
-		class={isTablet.any() ? "center" : section.horizontalPosition}
+		class={isTablet.any() ? "center" : horizontalPosition}
 		id={section.id} use:inview={options}
 		on:change={handleChange}
 	>
