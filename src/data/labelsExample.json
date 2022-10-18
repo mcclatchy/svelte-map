@@ -1,0 +1,613 @@
+{
+    "type": "Topology",
+    "arcs": [],
+    "objects":
+    {
+        "state":
+        {
+            "type": "GeometryCollection",
+            "geometries": [
+            {
+                "type": "Point",
+                "coordinates": [-79.52368355753673, 35.597597716764014],
+                "properties":
+                {
+                    "description": "North Carolina",
+                    "type": "state"
+                }
+            }]
+        }, 
+        "icons":
+        {
+            "type": "GeometryCollection",
+            "geometries": [
+            {
+                "type": "Point",
+                "coordinates": [-78.677203, 35.914789],
+                "properties":
+                {
+                    "description": "540",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.96929,35.18559],
+                "properties":
+                {
+                    "description": "485",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.6307,35.1546],
+                "properties":
+                {
+                    "description": "485",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.91363732994749, 35.33201491907078],
+                "properties":
+                {
+                    "description": "485",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.63834985113411, 35.8342720039011],
+                "properties":
+                {
+                    "description": "440",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.781911583767, 35.8403974240872],
+                "properties":
+                {
+                    "description": "40",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.88908429157213, 35.90598680412494],
+                "properties":
+                {
+                    "description": "40",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.56461171125449, 35.659053634700214],
+                "properties":
+                {
+                    "description": "40",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.85612,35.40222],
+                "properties":
+                {
+                    "description": "77",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.9257,35.1135],
+                "properties":
+                {
+                    "description": "77",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.70923,35.37480],
+                "properties":
+                {
+                    "description": "85",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.83211791610246, 36.03660094188874],
+                "properties":
+                {
+                    "description": "85",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.99725102072028, 35.259823226348175],
+                "properties":
+                {
+                    "description": "85",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.81858778048169, 35.27538828177763],
+                "properties":
+                {
+                    "description": "85",
+                    "anchor": "center",
+                    "type": "interstate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.89273116685202, 35.688654351545246],
+                "properties":
+                {
+                    "description": "1",
+                    "anchor": "center",
+                    "type": "intrastate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.55098958043648, 35.91369128137728],
+                "properties":
+                {
+                    "description": "1",
+                    "anchor": "center",
+                    "type": "intrastate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [ -78.69218197618777, 35.672406759465716],
+                "properties":
+                {
+                    "description": "401",
+                    "anchor": "center",
+                    "type": "intrastate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.49058531815473, 35.90204432756311],
+                "properties":
+                {
+                    "description": "401",
+                    "anchor": "center",
+                    "type": "intrastate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [ -78.9578447986931, 35.991164288422695],
+                "properties":
+                {
+                    "description": "501",
+                    "anchor": "center",
+                    "type": "intrastate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.68487568097846, 35.357094204025714],
+                "properties":
+                {
+                    "description": "29",
+                    "anchor": "center",
+                    "type": "intrastate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.24821119441293, 35.86806674531329],
+                "properties":
+                {
+                    "description": "64",
+                    "anchor": "center",
+                    "type": "intrastate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.92754536349405, 35.743562598254684],
+                "properties":
+                {
+                    "description": "64",
+                    "anchor": "center",
+                    "type": "intrastate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.72308102286848, 35.869625777032944],
+                "properties":
+                {
+                    "description": "70",
+                    "anchor": "center",
+                    "type": "intrastate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-81.00282643567448, 35.243564572816084],
+                "properties":
+                {
+                    "description": "74",
+                    "anchor": "center",
+                    "type": "intrastate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.70568894433075, 35.1265137470808],
+                "properties":
+                {
+                    "description": "74",
+                    "anchor": "center",
+                    "type": "intrastate"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.9447,35.2097],
+                "properties":
+                {
+                    "description": "",
+                    "anchor": "center",
+                    "type": "airport"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [ -78.78801794166782, 35.88032971011902],
+                "properties":
+                {
+                    "description": "",
+                    "anchor": "center",
+                    "type": "airport"
+                }
+            }]
+        },
+        "city":
+        {
+            "type": "GeometryCollection",
+            "geometries": [
+            {
+                "type": "Point",
+                "coordinates": [-78.64444495047535, 35.78109573992683],
+                "properties":
+                {
+                    "description": "Raleigh",
+                    "anchor": "bottom",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.83666020362712, 35.19617205656746],
+                "properties":
+                {
+                    "description": "Charlotte",
+                    "anchor": "bottom",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.24534805661504, 36.10006845221626],
+                "properties":
+                {
+                    "description": "Winston-Salem",
+                    "anchor": "bottom",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-77.962,34.380],
+                "properties":
+                {
+                    "description": "Wilmington",
+                    "anchor": "right",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.87780666559533, 35.04949344852321],
+                "properties":
+                {
+                    "description": "Fayetteville",
+                    "anchor": "bottom",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-82.55192435347698, 35.594594865885625],
+                "properties":
+                {
+                    "description": "Asheville",
+                    "anchor": "bottom",
+                    "type": "city"
+                }
+            }]
+        },
+        "city-small": {
+            "type": "GeometryCollection",
+            "geometries": [
+            {
+                "type": "Point",
+                "coordinates": [-80.8665,35.4323],
+                "properties":
+                {
+                    "description": "Huntersville",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.892282, 35.085330],
+                "properties":
+                {
+                    "description": "Pineville",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.724059, 35.116046],
+                "properties":
+                {
+                    "description": "Matthews",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.657217, 35.173267],
+                "properties":
+                {
+                    "description": "Mint Hill",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-80.7162239577415, 35.29091265737153],
+                "properties":
+                {
+                    "description": "Newell",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.516787, 35.973707],
+                "properties":
+                {
+                    "description": "Wake Forest",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.45729714777421, 35.92313986678585],
+                "properties":
+                {
+                    "description": "Rolesville",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.4825802258084, 35.78813500500692],
+                "properties":
+                {
+                    "description": "Knightdale",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.6127137156903, 35.71149000478313],
+                "properties":
+                {
+                    "description": "Garner",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.78028689916677, 35.79158241064819],
+                "properties":
+                {
+                    "description": "Cary",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.36862773181683, 35.78110409861198],
+                "properties":
+                {
+                    "description": "Wendell",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.31415168920708, 35.824830510559785],
+                "properties":
+                {
+                    "description": "Zebulon",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.85048798500407, 35.73188312154022],
+                "properties":
+                {
+                    "description": "Apex",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.82690042016273, 35.823464424560996],
+                "properties":
+                {
+                    "description": "Morrisville",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.83933282719372, 35.942129056816995],
+                "properties":
+                {
+                    "description": "Bethesda",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            }]
+        },
+        "city-medium": {
+            "type": "GeometryCollection",
+            "geometries": [
+            {
+                "type": "Point",
+                "coordinates": [-78.89980946336507, 35.99487985945232],
+                "properties":
+                {
+                    "description": "Durham",
+                    "anchor": "left",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-79.05601474766779, 35.91338374801415],
+                "properties":
+                {
+                    "description": "Chapel Hill",
+                    "anchor": "left",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-79.79222785954914, 36.07254573709124],
+                "properties":
+                {
+                    "description": "Greensboro",
+                    "anchor": "bottom",
+                    "type": "city"
+                }
+            }]
+        },
+        "city-zoom": {
+            "type": "GeometryCollection",
+            "geometries": [
+            {
+                "type": "Point",
+                "coordinates": [-78.79971446571116, 35.584000521626606],
+                "properties":
+                {
+                    "description": "Fuquay-Varina",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.83383358844306, 35.651110473781536],
+                "properties":
+                {
+                    "description": "Holly Springs",
+                    "anchor": "center",
+                    "type": "city"
+                }
+            }]
+        },
+        "area":
+        {
+            "type": "GeometryCollection",
+            "geometries": [
+            {
+                "type": "Point",
+                "coordinates": [-80.7416,35.4895],
+                "properties":
+                {
+                    "description": "Mecklenburg County",
+                    "anchor": "left",
+                    "type": "area"
+                }
+            },
+            {
+                "type": "Point",
+                "coordinates": [-78.680685, 36.058044],
+                "properties":
+                {
+                    "description": "The Triangle",
+                    "anchor": "bottom",
+                    "type": "area"
+                }
+            }]
+        },
+        "street":
+        {
+            "type": "GeometryCollection",
+            "geometries": [
+            {
+                "type": "Point", 
+                "coordinates": [-80.88632465384183, 35.295674912711526],
+                "properties":
+                {
+                    "description": "Peachtree Rd.",
+                    "anchor": "left",
+                    "type": "street"
+                }
+            }]
+        }
+    }
+}

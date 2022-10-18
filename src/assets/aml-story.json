@@ -1,0 +1,76 @@
+{
+    "content": [
+    {
+        "type": "scrolling-map",
+        "value":
+        {
+            "id": "statewide",
+            "sections": [
+            {
+                "id": "one",
+                "text": "Across North Carolina, about 20 major firms own at least 40,000 single-family homes.",
+                "bounds": "north_carolina",
+                "horizontalPosition": "left",
+                "speed": "1"
+            },
+            {
+                "id": "two",
+                "text": "Their portfolios are especially concentrated in the Charlotte metro area, where at least 1 in 20 single-family houses are owned by about 20 of these companies.",
+                "bounds": "charlotte",
+                "horizontalPosition": "left",
+                "speed": "1"
+            },
+            {
+                "id": "three",
+                "text": "In some neighborhoods, like this one off Peachtree Road in the northern part of Mecklenburg County, corporations control one-fifth of all houses.",
+                "bounds": "neighborhood",
+                "horizontalPosition": "left",
+                "pitch": "0",
+                "bearing": "0",
+                "speed": "1",
+                "interactive": "true"
+            },
+            {
+                "id": "four",
+                "text": "These homes are typically modest: three to four bedrooms, vinyl siding, small yards. Good starter homes.",
+                "bounds": "neighborhood_zoom",
+                "horizontalPosition": "left",
+                "pitch": "30",
+                "bearing": "-180",
+                "speed": "1"
+            },
+            {
+                "id": "five",
+                "text": "The single-family rental industry says demand for these properties is booming here.",
+                "bounds": "neighborhood_zoom",
+                "horizontalPosition": "left",
+                "pitch": "30",
+                "bearing": "-180",
+                "speed": "1"
+            },
+            {
+                "id": "six",
+                "text": "But Charlotte's not alone.",
+                "bounds": "charlotte",
+                "horizontalPosition": "left",
+                "pitch": "0",
+                "bearing": "0",
+                "speed": "0.8"
+            },
+            {
+                "id": "seven",
+                "text": "About 170 miles away in the Triangle, companies own more than 6,000 single-family homes, concentrated on the east side of Wake County.",
+                "bounds": "raleigh",
+                "horizontalPosition": "left",
+                "speed": "0.8"
+            },
+            {
+                "id": "eight",
+                "text": "In the suburbs and in communities like Fuquay-Varina and Holly Springs, these firms have turned some starter neighborhoods into communities full of rentals.",
+                "bounds": "fuquay",
+                "horizontalPosition": "left",
+                "speed": "1"
+            }]
+        }
+    }]
+}
