@@ -183,7 +183,7 @@
                 url={mapDataDict[key]?.url}
                 coordinates={mapDataDict[key]?.coordinates}
                 tilesize={mapDataDict[key]?.tileSize}
-                maxzoom={mapDataDict[key]?.maxzoom || null}
+                maxzoom={mapDataDict[key]?.maxZoom || null}
               >
                 {#each mapDataDict[key].layers as layer}
                   <MapLayerOrder
