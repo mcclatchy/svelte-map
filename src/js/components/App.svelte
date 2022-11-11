@@ -13,8 +13,7 @@
 	const baseUrl = `https://www.${$domain}.com/static/hi/2022/${projectName}`
 	const dataPath = import.meta.env.PROD ? `${baseUrl}/data` : "../../src/data"
 	const imagePath = import.meta.env.PROD ? `${baseUrl}/images` : "../../src/images"
-	const assetPath = import.meta.env.PROD ? `${baseUrl}/assets` : "../../src/assets"
-	const amlURL = `${assetPath}/aml-story.json`
+	const amlURL = `${dataPath}/aml-story.json`
 
 	let scrollY = 0;
 	let innerHeight = window.innerHeight;

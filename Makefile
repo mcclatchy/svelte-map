@@ -6,7 +6,7 @@ deploy:
 
 ## Must set up gcloud cli to use these commands
 bucket:
-	gsutil -m rsync -r -x ".DS_Store|partials/" mp4s/ gs://mc-high-impact/$(shell date +'%Y')/$(notdir $(CURDIR))
+	gsutil -m rsync -r -x ".DS_Store|partials/" dist/ gs://mc-high-impact/$(shell date +'%Y')/$(notdir $(CURDIR))
 
 test:
 	gsutil -m rsync -n -r -x ".DS_Store|partials/" dist/ gs://mc-high-impact/$(shell date +'%Y')/$(notdir $(CURDIR))
