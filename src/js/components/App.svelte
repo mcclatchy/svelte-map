@@ -8,12 +8,13 @@
 	import { windowWidth, windowHeight, domain, activeSectionId, activeMapBoundsId } from '../modules/store.js';
 	import Fonts from './Fonts.svelte';
 	import MapExample from './MapExample.svelte';
-  import amlURL from '../../assets/aml-story.json?url';
 
 	const projectName = "svelte-map-example"
 	const baseUrl = `https://www.${$domain}.com/static/hi/2022/${projectName}`
 	const dataPath = import.meta.env.PROD ? `${baseUrl}/data` : "../../src/data"
 	const imagePath = import.meta.env.PROD ? `${baseUrl}/images` : "../../src/images"
+	const assetPath = import.meta.env.PROD ? `${baseUrl}/assets` : "../../src/assets"
+	const amlURL = `${assetPath}/aml-story.json`
 
 	let scrollY = 0;
 	let innerHeight = window.innerHeight;
