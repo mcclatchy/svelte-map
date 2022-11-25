@@ -1,49 +1,3 @@
-.story-body > .embed-infographic {
-  min-height: 100vh;
-  margin: 0 !important;
-}
-
-::-moz-selection { /* Code for Firefox */
-  color: #401116;
-  background: #FFD8DD;
-}
-
-::selection {
-  color: #401116;
-  background: #FFD8DD;
-}
-
-.story-body > a {
-  color: #D93A4C;
-  text-decoration: underline;
-}
-
-.story-body > a:hover {
-  color: #D93A4C;
-  text-decoration: none;
-}
-
-.story-body > a:clicked {
-  text-decoration: none;
-}
-
-html, body {
-  position: relative;
-  width: 100%;
-  /*background-color: #fefaf7;*/
-  background-color:  white;
-}
-
-body {
-  color: #333;
-  margin: 0 !important;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-}
-
-section#flag {
-  display: none;
-}
 
 .embed-infographic {
   margin-bottom:  0px !important;
@@ -81,10 +35,6 @@ video-js video {
 svelte-scroller-foreground {
   z-index: 4 !important;
   pointer-events: none !important;
-}
-
-.responsive-image {
-  display: none;
 }
 
 /* Attempt to remove any appearance of video play button */
