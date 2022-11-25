@@ -4,15 +4,12 @@ import { removeNodes, removeCardsBelowStory } from 'https://www.miamiherald.com/
 
 // Remove crufts from story page in a WPS-preferred way
 const deadpool = [
-    '.story-body header.header',
     '.trinity-player-iframe-wrapper',
     '.commenting-container',
     '#zone-el-101',
     '.gallery.slider',
     '.upper-nav',
     'section#flag',
-    '.responsive-image',
-    'footer',
     '#zone-el-14',
     'section.bottom-nav'
 ];
