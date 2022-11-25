@@ -13,16 +13,24 @@
 	const baseUrl = `https://www.${$domain}.com/static/hi/2022/${projectName}`
 	const dataPath = import.meta.env.PROD ? `${baseUrl}/data` : "../../src/data"
 	const imagePath = import.meta.env.PROD ? `${baseUrl}/images` : "../../src/images"
+	const videoPath = import.meta.env.PROD ? `${baseUrl}/videos` : "../../src/videos"
 	const amlURL = `${dataPath}/aml-story.json`
 
 	let scrollY = 0;
 	let innerHeight = window.innerHeight;
 	let innerWidth = window.innerWidth;
 	let outerHeight = window.outerHeight;
-	
+	let mapContainer;
+
 	$: windowHeight.set(isMobile.ios() || isTablet.ipad() ? outerHeight : innerHeight);
 	$: windowWidth.set(innerWidth);
 	$: domain.set(window.pageInfo["marketInfo.domain"]);
+
+	if (history.scrollRestoration) {
+	  history.scrollRestoration = 'manual';
+	}
+
+	$: mapContainer && mapContainer.closest(".embed-infographic")?.classList.add("full-bleed")
 
   async function initPage() {
     let url = amlURL;
@@ -50,13 +58,15 @@
 {#await initPage()}
 	<div class="bg-placeholder"/>
 {:then data}
-	<MapExample
-		{imagePath}
-		{dataPath}
-		{scrollY}
-		mapId="statewide-map"
-		mapSectionData={getArrayItemById('statewide', data.maps)}
-	/>
+	<div bind:this={mapContainer}>
+		<MapExample
+			{imagePath}
+			{dataPath}
+			{scrollY}
+			mapId="statewide-map"
+			mapSectionData={getArrayItemById('statewide', data.maps)}
+		/>
+	</div>
 {/await}
 
 <style>
