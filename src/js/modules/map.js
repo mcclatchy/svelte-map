@@ -72,7 +72,20 @@ export async function getMapDataDict(sources) {
           data[sourceMapId].layers.push(layer)
         }
       }
-    }
+    } else {
+      for (const layer of layers) {
+        const mapLayerId = layer?.mapLayerId
+        const sourceMapId = `${sourceId}-${mapLayerId}`;
+        if (!data.hasOwnProperty(sourceMapId)) {
+          data[sourceMapId] = {
+            type: sourceDataType,
+            layers: [layer]
+          }
+        } else {
+          data[sourceMapId].layers.push(layer)
+        }
+      }
+    }    
   }
   return data;
 }  

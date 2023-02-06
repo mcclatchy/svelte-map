@@ -11,6 +11,7 @@
 	export let top = 0;
 	export let left = 0;
 	export let visibility = "visible";
+	export let imagePath;
 
  	const bounds = section?.bounds;
 	const padding = section?.padding
@@ -19,7 +20,7 @@
 	const speed = section?.speed || 0.6;
 	const horizontalPosition = section?.horizontalPosition || 'center';
 
-	let boxWidth = 600;
+	let boxWidth = 400;
 
   const options = {
     rootMargin: `0px`,
@@ -36,7 +37,9 @@
 		isInView = detail.inView
 		isInView && fitBounds(map, section.bounds, speed, padding, pitch, bearing)
 	};
-
+	let textBox;
+	$: textBoxHeight = textBox ? textBox.clientHeight : 0;
+	$: sectionHeight = $windowHeight + textBoxHeight
 	$: isInView && $isPortrait && $windowWidth && debounce(fitBounds(map, bounds, speed, padding, pitch, bearing), 500)
 	$: isInView && activeSectionId.set(section.id)
 	$: isInView && activeMapBoundsId.set(section.boundsId)
@@ -44,7 +47,7 @@
 
 
 <div style={`
-	height: ${1.25 * $windowHeight}px;
+	height: ${sectionHeight}px;
 	z-index: 2;
 	position: ${outerFixed ? 'fixed': 'relative'};
 	pointer-events: none;
@@ -57,6 +60,7 @@
 		id={section.id}
 		use:inview={options}
 		on:change={handleChange}
+		bind:this={textBox}
 	>
 		<div
 		style={`
@@ -72,7 +76,7 @@
 		`}>
 			<p style={`
 				border: none;
-				background-color: rgba(255, 255, 255, 1);
+				background-color: var(--bc);
 				text-align: ${$isPortrait ? "center" : "left"};
 			`}>
 				{@html amlToHTML(section.text)}
@@ -85,8 +89,15 @@
 		class={isTablet.any() ? "center" : horizontalPosition}
 		id={section.id} use:inview={options}
 		on:change={handleChange}
+		bind:this={textBox}
 	>
-		<p style={`background-color: rgba(255, 255, 255, 1)`}>
+	
+		<p style={`background-color: var(--bc);`}>
+			{#if section?.image}
+				<img src={`${imagePath}/${section.image.filename}`}/>
+				<span class="caption">{@html section.image?.caption || ""}</span>
+				<hr/>
+			{/if}
 			{@html amlToHTML(section.text)}
 		</p>
 	</section>
@@ -100,35 +111,45 @@
 
 	section {
 		margin: 0 !important;
-    width: 600px;
+    width: 400px;
     max-width: 100%;
 	}
 
 	section p {
-    font-family: 'Libre Franklin';
-    line-height: 1.5;
-    font-weight: 400;
-    font-size: 16px;
-		border:  1px solid #999;
-    border-radius: 20px;
-    color: black;
+		font-family: var(--serif);
+		border:  1px solid #444;
+    color: var(--tc);
 		padding: 20px;
     pointer-events: all;
     transition: opacity 0.6s;
   	-webkit-transition: opacity 0.6s;
   	margin: 20px;
+  	width: fit-content;
+	}
+
+	section p img {
+		width: 100%;
+		object-fit: cover;
+		margin-bottom: 5px;
+		height: 220px;
+	}
+
+	section p hr {
+		margin-bottom: 20px;
+		border: 0.5px solid #666 !important;
+		margin-top: 10px;
 	}
 
 	.center {
 		position: absolute;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -100%);
 	}
 
   .left {
   	position: absolute;
     left: 40px;
-    transform: translate(0%, 0);
+    transform: translate(0%, 0%);
 
   }
 
@@ -143,17 +164,15 @@
 	@media only screen and (max-width: 700px) {
 		section p {
 			max-width: 100%;
-			padding: 10px;
-	    margin:  10px;
-      font-size: 16px;
-      line-height: 24px;
+			margin: 20px auto;
 		}
 		:global(.highlighter) {
 			padding: 1px 3px;
 			margin: 0 2px;
 		}
 		.left {
-			left: 0;
+			left: 50%;
+    	transform: translate(-50%, 0);
 		}
 	}
 </style>

@@ -97,6 +97,13 @@
 				coordinates: coordinates,
 	  		...props
 			};
+		} else if (type == "heatmap") {
+	  	layerdef = {
+	  		type: type,
+	  		...props
+			};
+		} else if (type == "background") {
+			loaded = true;
 		}
 		if (layerdef) {
 			map.addSource(id, layerdef);
@@ -111,7 +118,6 @@
 	}
 
 	$: loaded && data && setData();
-	
 </script>
 
 {#if loaded}

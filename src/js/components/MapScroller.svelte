@@ -6,15 +6,17 @@
   import MapLayerOrder from './MapLayerOrder.svelte';
   import MapLegendSwatches from './MapLegendSwatches.svelte';
   import MapLegendCategorical from './MapLegendCategorical.svelte';
+  import MapLegendText from './MapLegendText.svelte';
   import MapScaleBar from './MapScaleBar.svelte';
   import MapSection from './MapSection.svelte';
   import MapSource from './MapSource.svelte';
   import Scroller from "./Scroller.svelte";
-  import { windowWidth, windowHeight, activeSectionId, activeMapBoundsId } from '../modules/store.js';
-  import { isTablet } from "../modules/utils.js";
+  import { windowWidth, windowHeight, activeSectionId, activeMapBoundsId, isPortrait } from '../modules/store.js';
+  import { isTablet, isMobile } from "../modules/utils.js";
   import { getMapDataDict, setupIcon } from "../modules/map.js";
 
   // Variables passed in from the specific map configuration
+  export let imagePath;
   export let scrollY;
   export let mapId;
   export let mapStyleUrl;
@@ -48,6 +50,10 @@
   let shouldLoad = false;
   onMount(() => { if (map) { triggerPixel = map.offsetTop - offset }})
 
+  $: topPadding = $isPortrait && isMobile.any() ? 100 : 100;
+  $: sidePadding = $isPortrait && isMobile.any() ? 0 : 0;
+  $: mapPadding = {top: topPadding, bottom: 0, left: sidePadding, right: sidePadding}
+
   // Update sections along with changes in $windowWidth
   // sections variable defines bounds and other changeable items based on device/screen size
   $: sections = $windowWidth && mapBounds && mapSectionData && mapSectionData.sections.map((section) => {
@@ -59,9 +65,10 @@
       bounds: mapBounds[section.bounds],
       horizontalPosition: section.horizontalPosition,
       speed: section?.speed,
+      image: section?.image,
       pitch: section?.pitch || 0,
       bearing: section?.bearing || 0,
-      padding: {top: 100, bottom:0, left: 0, right: 0}
+      padding: mapPadding
     }
   });
 
@@ -86,13 +93,14 @@
   }
 
   $: isHoverableSection = sections.filter(section => section.id === $activeSectionId)[0].hoverable
+
 </script>
 
 <!-- WARNING: this is only for debugging - don't deploy this actively -->
-<p class="debug" style={`display: ${import.meta.env.PROD ? 'none' : 'block'};`}>
+<!-- <p class="debug" style={`display: ${import.meta.env.PROD ? 'none' : 'block'};`}>
   <br />
   {Math.round(progress * 1000) / 1000}
-</p>
+</p> -->
 
 <div id={`${mapId}-scroller`}>
   <Scroller bind:progress>
@@ -108,12 +116,13 @@
              -->
             <MapSection
               {section}
+              {imagePath}
               map={map}
             />
         {/each}
       {/if}
       <!-- Spacer for text -->
-      <div class="text-spacer" style={`height: ${0.25 * $windowHeight}px;`}/>
+      <!-- <div class="text-spacer" style={`height: ${0.25 * $windowHeight}px;`}/> -->
     </div>
 
     <!-- MAP ELEMENTS -->
@@ -134,15 +143,15 @@
             controls={false}
             attributionPlacement={mapAttribution?.placement}
             attributionText={mapAttribution?.text}
-            padding={{top: 100, bottom:0, left: 0, right: 0}}
+            padding={mapPadding}
             bind:map={map}
             bind:loaded={mapLoaded}
           >
 
             <!-- Add a scale bar for distances -->
-            <MapScaleBar
+<!--             <MapScaleBar
               {map}
-            />
+            /> -->
 
             <!-- This is one way to add legends that change based on section
             I have predefined MapLegendSwatches and MapLegendCategorical
@@ -170,6 +179,15 @@
                   legendWidth={legend?.width}
                 />
               {/if}
+
+              {#if legend.type === "text"}
+                <MapLegendText
+                  legendTitle={legend?.title}
+                  legendSubtitle={legend?.subtitle}
+                  opacity={legend?.sections.includes($activeSectionId) ? 1 : 0}
+                  legendWidth={legend?.width}
+                />
+              {/if}
             {/each}
 
             <!-- This is where all map data sources and map layers get added to the map -->
@@ -193,7 +211,7 @@
                     {hovered} 
                     layerType={layer.layerType}
                     paintStyles={layer?.paint}
-                    layoutStyles={layer?.layout}
+                    layoutStyles={layer?.layout || {}}
                     id={layer.mapLayerId}
                   />
                 {/each}
