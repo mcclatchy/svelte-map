@@ -15,6 +15,8 @@
   export let filter = null;
   export let paintStyles = {};
   export let layoutStyles = {};
+  export let maxZoom = null;
+  export let minZoom = null;
 
   let select = tooltip?.select
   let hover = tooltip?.hover
@@ -66,6 +68,8 @@
     layout={layoutStyle}
     highlight={highlighted !== null}
     highlighted={highlighted}
+    minzoom={maxZoom}
+    maxzoom={minZoom}
   >
     {#if tooltip}
       <MapTooltip

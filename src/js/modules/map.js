@@ -65,6 +65,7 @@ export async function getMapDataDict(sources) {
             url: sourceFilepath,
             type: sourceDataType,
             tileSize: source?.tileSize,
+            minZoom: source?.minZoom,
             maxZoom: source?.maxZoom,
             layers: [layer]
           }

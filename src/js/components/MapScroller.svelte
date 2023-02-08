@@ -40,7 +40,7 @@
   // Using svelte-inview functionality to lazy load the map
   // offset - defines how many pixels ahead of time to start loading the map
   let isInView;
-  const offset = 3000;
+  const offset = 5000;
   const handleChange = ({ detail }) => (isInView = detail.inView);
   const options = { rootMargin: `${offset}px`, unobserveOnEnter: true };
 
@@ -50,8 +50,8 @@
   let shouldLoad = false;
   onMount(() => { if (map) { triggerPixel = map.offsetTop - offset }})
 
-  $: topPadding = $isPortrait && isMobile.any() ? 100 : 100;
-  $: sidePadding = $isPortrait && isMobile.any() ? 0 : 0;
+  $: topPadding = $isPortrait && isMobile.any() ? 30 : 50;
+  $: sidePadding = $isPortrait && isMobile.any() ? 5 : 20;
   $: mapPadding = {top: topPadding, bottom: 0, left: sidePadding, right: sidePadding}
 
   // Update sections along with changes in $windowWidth
@@ -202,6 +202,7 @@
                 coordinates={mapDataDict[key]?.coordinates}
                 tilesize={mapDataDict[key]?.tileSize}
                 maxzoom={mapDataDict[key]?.maxZoom || null}
+                minzoom={mapDataDict[key]?.minZoom || null}
               >
                 {#each mapDataDict[key].layers as layer}
                   <MapLayerOrder
