@@ -37,7 +37,7 @@ This is an example of an AML format for a scrollable map with 2 sections. You mi
     pitch: 0
     bearing: 0
     speed: 1
-    hoverable: true
+    tooltip: true
     
     id: two
     text: Their portfolios are especially concentrated in the Charlotte metro area.
@@ -79,8 +79,11 @@ This is the format of an example output JSON
                 // speed of movement in maplibre-gl (default is 0.6)
                 "speed": "1",
                 
-                // whether this section should allow hovering (default is false)
-                "hoverable": "true"
+                // whether this section should allow a tooltip (default is false)
+                "tooltip": "true",
+                
+                // whether this section should allow interactivity - scrolling zoom, panning on click+drag (default is false)
+                "interactive": "true"
             },
             {
                 "id": "two",
@@ -105,6 +108,7 @@ The config file aims to centralize as much customization of a scrollable map int
 * `mapLegends`
 * `mapLayerOrder`
 * `mapSources`
+* `mapTooltips`
 
 #### mapStyleUrl
 This is the skeleton of a style JSON that you might find for MapBox or other MapLibre vector maps. It minimally has a `version` (not sure why this is needed - worth looking up), `sources`, and `layers`. If you want to add text to the map, you also need a `glyphs` field. I use the following, and place `style.json` and `styleDev.json` in the `/src/data/` folder.
@@ -352,4 +356,34 @@ paint: {
     }
   ]
 }
+```
+
+#### mapTooltips
+This is an object that takes a `layerId` as a key and a function as a value. The function defines what a tooltip should look like and takes a feature object as its only parameter. This means it can successfully access properties through the pattern `obj.feature.properties.address`, for instance, if address is a property in the topojson feature. The function should return an HTML string that dictates how the tooltip will appear.
+
+Here's a simple example of the map layer named `home-fill` using the `getAddressTooltipHTML` to display a simple address string in its tooltip (activated by hover or selection).
+
+``` javascript
+function getAddressTooltipHTML(obj) {
+  const tooltipHTML = `
+    <p class="tooltip-address">
+      ${obj.feature.properties.address}
+    </p>
+  `
+  return tooltipHTML
+}
+  
+const mapTooltips = {
+  'home-fill': getAddressTooltipHTML
+}
+```
+
+If you want to add specific styling onto your tooltip, you can add a `<style>` tag at the bottom of your config file. Here's a simple example for the address tooltip. Make sure to use `:global(<CLASS NAME>)` in order to ensure this styling gets applied to the templated HTML string returned by your tooltip function.
+
+``` html
+<style>
+  :global(.tooltip-address) {
+    color: red;
+  }
+</style>
 ```
