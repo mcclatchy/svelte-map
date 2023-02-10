@@ -27,6 +27,7 @@
   export let mapBounds;
   export let mapLegends;
   export let mapLayerOrder;
+  export let mapTooltips;
 
   let map = null;
   let mapLoaded = false;
@@ -36,6 +37,7 @@
   let pointerEvents = "none";
   let sections;
   let hovered;
+  let selected;
 
   // Using svelte-inview functionality to lazy load the map
   // offset - defines how many pixels ahead of time to start loading the map
@@ -60,7 +62,7 @@
     return {
       text: section.text,
       id: section?.id,
-      hoverable: section?.hoverable,
+      tooltip: section?.tooltip,
       boundsId: section?.bounds,
       bounds: mapBounds[section.bounds],
       horizontalPosition: section.horizontalPosition,
@@ -92,8 +94,8 @@
     mapDataLoaded = true;
   }
 
-  $: isHoverableSection = sections.filter(section => section.id === $activeSectionId)[0].hoverable
-
+  $: isTooltipSection = sections.filter(section => section.id === $activeSectionId)[0].tooltip
+  $: isInteractiveSection = sections.filter(section => section.id === $activeSectionId)[0].interactive
 </script>
 
 <!-- WARNING: this is only for debugging - don't deploy this actively -->
@@ -105,7 +107,7 @@
 <div id={`${mapId}-scroller`}>
   <Scroller bind:progress>
     <!-- TEXT SLATES -->
-    <div slot="foreground">
+    <div slot="foreground" style={`pointer-events: ${isTooltipSection || isInteractiveSection ? 'none' : 'unset'}`}>
       <!-- Spacer for text -->
       <div class="text-spacer" style={`height: ${$windowHeight}px;`}/>
       {#if sections}
@@ -130,7 +132,7 @@
       style={`
         width: 100%;
         height: ${isTablet.ipad() ? $windowHeight - 50 : $windowHeight}px;
-        pointer-events: ${isHoverableSection ? 'all' : 'none'}`
+        pointer-events: ${isTooltipSection || isInteractiveSection ? 'all' : 'none'}`
       }>
       <div class="map" use:inview={options} on:change={handleChange}>
         {#if mapDataLoaded && (isInView || shouldLoad)}
@@ -139,7 +141,7 @@
             id={mapId}
             style={mapStyleUrl}
             location={{bounds: mapBounds[$activeMapBoundsId]}}
-            interactive={false}
+            interactive={isInteractiveSection || false}
             controls={false}
             attributionPlacement={mapAttribution?.placement}
             attributionText={mapAttribution?.text}
@@ -209,11 +211,13 @@
                     {mapId} 
                     {mapLayerOrder}
                     tooltip={layer?.tooltip}
-                    {hovered} 
+                    {hovered}
+                    {selected}
                     layerType={layer.layerType}
                     paintStyles={layer?.paint}
                     layoutStyles={layer?.layout || {}}
                     id={layer.mapLayerId}
+                    {mapTooltips}
                   />
                 {/each}
               </MapSource>

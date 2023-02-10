@@ -11,12 +11,14 @@
   export let highlighted = null;
   export let hovered = null;
   export let hoverableIds = [];
+  export let selected = null;
   export let tooltip = false;
   export let filter = null;
   export let paintStyles = {};
   export let layoutStyles = {};
   export let maxZoom = null;
   export let minZoom = null;
+  export let mapTooltips = {};
 
   let select = tooltip?.select
   let hover = tooltip?.hover
@@ -63,6 +65,7 @@
     filter={filter}
     hover={hover}
     hovered={hovered}
+    bind:selected={selected}
     hoverableIds={hoverableIds}
     paint={paintStyle}
     layout={layoutStyle}
@@ -73,9 +76,13 @@
   >
     {#if tooltip}
       <MapTooltip
+        {mapTooltips}
         mapId={mapId}
         layerId={id}
-        content={hovered}
+        content={selected}
+        select={select}
+        hover={hover}
+        bind:selected={selected}
       />
     {/if}
   </MapLayer>

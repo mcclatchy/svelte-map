@@ -28,7 +28,7 @@
                 "pitch": "0",
                 "bearing": "0",
                 "speed": "1",
-                "hoverable": "true"
+                "tooltip": "true"
             },
             {
                 "id": "four",

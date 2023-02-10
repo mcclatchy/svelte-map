@@ -43,12 +43,19 @@
 		layer: id
 	});
 
-	const hoverObj = writable({
+	const selectedObj = writable({
 		id: null,
 		feature: null,
 		event: null
 	});
-	setContext("hover", hoverObj);
+	setContext("select", selectedObj);
+
+	const hoveredObj = writable({
+		id: null,
+		feature: null,
+		event: null
+	});
+	setContext("hover", hoveredObj);
 
 	idKey = idKey ? idKey : promoteId;
 	sourceLayer = sourceLayer ? sourceLayer : layer;
@@ -167,19 +174,26 @@
 				let feature = e.features[0];
 				selected = feature.id;
 
-				dispatch('select', {
+				selectedObj.set({
 					id: selected,
 					feature: feature,
 					event: e
 				});
+				dispatch('select', $selectedObj);
 				
 				if (selectedPrev) {
+					selectedObj.set({
+						id: selected,
+						feature: feature,
+						event: e
+					});
+					dispatch('select', $selectedObj);
 					map.setFeatureState(
             { source: source, sourceLayer: sourceLayer, id: selectedPrev },
             { selected: false }
           );
 				}
-				
+
 				map.setFeatureState(
           { source: source, sourceLayer: sourceLayer, id: selected },
           { selected: true }
@@ -193,6 +207,13 @@
 				}
 				
 				selectedPrev = selected;
+			} else {
+				selectedObj.set({
+						id: null,
+						feature: null,
+						event: e
+					});
+				dispatch('select', $selectedObj);
 			}
     });
 	}
@@ -215,7 +236,7 @@
 	}
 	
 	// Adds an event to update the hovered geo code when the mouse is moved over the map
-	if (hover) {
+	if (hover || select) {
 		map.on('mousemove', id, (e) => {
       if (e.features.length > 0) {
 				if (hovered && (hoverableIds.includes(hovered) || !hoverableIds.length)) {
@@ -228,13 +249,13 @@
 				hovered = hoveredPrev = feature.id;
 
 				if (hovered && (hoverableIds.includes(hovered) || !hoverableIds.length)) {
-					hoverObj.set({
+					hoveredObj.set({
 						id: hovered,
 						feature: feature,
 						event: e
 					});
 
-					dispatch('hover', $hoverObj);
+					dispatch('hover', $hoveredObj);
 
 	        map.setFeatureState(
 	          { source: source, sourceLayer: sourceLayer, id: hovered },
@@ -246,13 +267,13 @@
 				} else {
 					hovered = hoveredPrev = null;
 
-						hoverObj.set({
+						hoveredObj.set({
 							id: null,
 							feature: null,
 							event: e
 						});
 
-						dispatch('hover', $hoverObj);
+						dispatch('hover', $hoveredObj);
 						
 						// Reset cursor and remove popup
 						map.getCanvas().style.cursor = '';
@@ -270,13 +291,13 @@
       }
 			hovered = hoveredPrev = null;
 
-			hoverObj.set({
+			hoveredObj.set({
 				id: null,
 				feature: null,
 				event: e
 			});
 
-			dispatch('hover', $hoverObj);
+			dispatch('hover', $hoveredObj);
 			
 			// Reset cursor and remove popup
 			map.getCanvas().style.cursor = '';
@@ -311,13 +332,13 @@
 			);
 			hovered = hoveredPrev = null;
 
-			hoverObj.set({
+			hoveredObj.set({
 				id: null,
 				feature: null,
 				event: null
 			});
 
-			dispatch('hover', $hoverObj);
+			dispatch('hover', $hoveredObj);
 			
 			// Reset cursor and remove popup
 			map.getCanvas().style.cursor = '';
@@ -327,5 +348,7 @@
 </script>
 
 {#if hover}
-<slot {hovered}></slot>
+	<slot {hovered}></slot>
+{:else if select}
+	<slot {selected}></slot>
 {/if}

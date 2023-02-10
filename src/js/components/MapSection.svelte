@@ -123,7 +123,7 @@
     pointer-events: all;
     transition: opacity 0.6s;
   	-webkit-transition: opacity 0.6s;
-  	margin: 20px;
+  	margin: var(--page-padding);
   	width: fit-content;
 	}
 
@@ -164,7 +164,6 @@
 	@media only screen and (max-width: 700px) {
 		section p {
 			max-width: 100%;
-			margin: 20px auto;
 		}
 		:global(.highlighter) {
 			padding: 1px 3px;

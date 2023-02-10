@@ -99,7 +99,7 @@
 .legend-header {
     line-height: 1.3;
     font-size: 20px;
-    font-family:  'Libre Franklin';
+    font-family: var(--serif);
     padding-top: 8px;
     font-weight: 600;
 }
@@ -110,7 +110,7 @@
     left: 50%;
     transform:  translate(-50%, 0%);
     font-size: 11px;
-    font-family:  'Libre Franklin';
+    font-family: var(--sans);
     color: #444;
     z-index: 10;
     background-color: transparent;
