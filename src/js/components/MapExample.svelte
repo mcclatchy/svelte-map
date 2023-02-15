@@ -1059,6 +1059,7 @@
 	{mapLayerOrder}
 	{mapSources}
 	{mapTooltips}
+	{imagePath}
 />
 
 
