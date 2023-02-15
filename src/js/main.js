@@ -27,7 +27,6 @@ removeNodes(deadpool);
 removeCardsBelowStory();
 
 const embed = $1('#embedRoot');
-embed.parentElement.classList.add('full-bleed')
 
 const app = new App({
     target: embed
