@@ -63,6 +63,8 @@
       text: section.text,
       id: section?.id,
       tooltip: section?.tooltip,
+      interactive: section?.interactive,
+      controls: section?.controls,
       boundsId: section?.bounds,
       bounds: mapBounds[section.bounds],
       horizontalPosition: section.horizontalPosition,
@@ -96,6 +98,8 @@
 
   $: isTooltipSection = sections.filter(section => section.id === $activeSectionId)[0].tooltip
   $: isInteractiveSection = sections.filter(section => section.id === $activeSectionId)[0].interactive
+  $: isControlsSection = sections.filter(section => section.id === $activeSectionId)[0].controls
+  $: console.log(isInteractiveSection, $activeSectionId, sections)
 </script>
 
 <!-- WARNING: this is only for debugging - don't deploy this actively -->
@@ -142,7 +146,7 @@
             style={mapStyleUrl}
             location={{bounds: mapBounds[$activeMapBoundsId]}}
             interactive={isInteractiveSection || false}
-            controls={false}
+            controls={isControlsSection || false}
             attributionPlacement={mapAttribution?.placement}
             attributionText={mapAttribution?.text}
             padding={mapPadding}
