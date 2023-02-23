@@ -1,4 +1,4 @@
-# svelte-map
+# sacbee-hit-runs-svelte-map
 
 ## Overview
 This repository helps create scrollable or interactive maps. It's built in [Svelte](https://svelte.dev/) (based initially on [ONS svelte-maps](https://github.com/ONSvisual/svelte-maps) repository) and uses [MapLibre GL](https://maplibre.org/maplibre-gl-js-docs/api/) to power different map interactions. You can add different items to the map: raster tiles, images, topojson, lines, fills, circles, symbols. You can support custom fonts (see README.md in `fonts/` folder). And if you're making a scrollable map, the text and sections can be powered by an [AML](http://archieml.org/) to JSON workflow.
