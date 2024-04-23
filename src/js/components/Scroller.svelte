@@ -69,6 +69,7 @@
 	export let threshold = 0.5;
 	export let query = 'section';
 	export let parallax = false;
+	export let overflow = true;
 	// bindings
 	export let index = 0;
 	export let count = 0;
@@ -91,9 +92,9 @@
 	$: threshold_px = Math.round(threshold * wh);
 	$: (top, bottom, threshold, parallax, update());
 	$: style = `
-		position: ${fixed ? 'fixed' : 'absolute'};
+		position: ${overflow ? 'sticky' : fixed ? 'fixed' : 'absolute'};
 		top: 0;
-		transform: translate(0, ${offset_top}px);
+		transform: ${overflow ? '' : `translate(0, ${offset_top}px)`};
 		z-index: ${inverted ? 3 : 1};
 	`;
 	$: widthStyle = fixed ? `width:${width}px;` : '';
@@ -178,7 +179,6 @@
 		display: block;
 		position: relative;
 		z-index: 2;
-		pointer-events: none;
 	}
 	svelte-scroller-foreground::after {
 		content: ' ';
