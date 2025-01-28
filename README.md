@@ -17,6 +17,9 @@ Run the following commands:
 npm install --dev
 npm install
 
+# May need to install vite (optional if npm run dev not working)
+npm install vite
+
 # Run the local server at localhost:3000
 npm run dev
 
